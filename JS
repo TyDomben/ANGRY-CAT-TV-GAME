@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateCatMood(number) {
         if (number % 2 === 0 || number % 5 === 0) {
-            catImage.src = 'happy_cat.png';
+            catImage.src = 'cat photo_sleeping.jpeg';
         } else {
-            catImage.src = 'unhappy_cat.png';
+            catImage.src = 'cat_photo_grumpy_3.jpeg';
         }
     }
 });
