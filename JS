@@ -1,23 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const display = document.getElementById('tvRadioDisplay');
-    const catImage = document.getElementById('catImage');
-    const changeNumberButton = document.getElementById('changeNumber');
+document.addEventListener("DOMContentLoaded", () => {
+  const display = document.getElementById("tvRadioDisplay");
+  const catImage = document.getElementById("catImage");
+  const changeNumberButton = document.getElementById("changeNumber");
+  // audio
+  const angryCatSound = document.getElementById("angryCatSound");
+  const grumpyCatSound = document.getElementById("grumpyCatSound");
 
-    changeNumberButton.addEventListener('click', () => {
-        const number = generateRandomNumber();
-        display.textContent = number;
-        updateCatMood(number);
-    });
+  changeNumberButton.addEventListener("click", () => {
+    const number = generateRandomNumber();
+    display.textContent = number;
+    updateCatMood(number);
+  });
 
-    function generateRandomNumber() {
-        return Math.floor(Math.random() * 100);
+  function generateRandomNumber() {
+    return Math.floor(Math.random() * 100);
+  }
+  const muteButton = document.getElementById('muteButton');
+  let isMuted = false;
+  
+  muteButton.addEventListener('click', () => {
+      isMuted = !isMuted;
+      angryCatSound.muted = isMuted;
+      grumpyCatSound.muted = isMuted;
+  });
+  
+  function updateCatMood(number) {
+    if (number % 2 === 0 || number % 5 === 0) {
+      catImage.src = "happy_cat.png";
+      grumpyCatSound.pause();
+      grumpyCatSound.currentTime = 0; // Reset the sound
+    } else {
+      catImage.src = "unhappy_cat.png";
+      angryCatSound.play();
     }
-
-    function updateCatMood(number) {
-        if (number % 2 === 0 || number % 5 === 0) {
-            catImage.src = 'cat photo_sleeping.jpeg';
-        } else {
-            catImage.src = 'cat_photo_grumpy_3.jpeg';
-        }
-    }
+  }
 });
